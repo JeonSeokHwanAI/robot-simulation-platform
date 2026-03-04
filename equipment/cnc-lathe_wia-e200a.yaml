@@ -1,0 +1,82 @@
+# CNC 선반: 현대위아 E200A
+# 출처: SMT Co., Percy Martin, Ward CNC 제품 사양 종합
+# 등록일: 2026-03-04
+
+equipment_type: cnc-lathe
+name: "Hyundai WIA E200A"
+manufacturer: "Hyundai WIA"
+model: "E200A"
+
+# 물리 치수 (Gazebo 월드 배치용, 단위: m)
+dimensions:
+  width: 2.020                   # 2020 mm
+  depth: 1.763                   # 1763 mm
+  height: 1.820                  # 1820 mm
+  weight_kg: 3800
+  door_opening_width: 0          # ⚠️ 미확인 — 사용자 입력 필요
+  door_opening_height: 0         # ⚠️ 미확인 — 사용자 입력 필요
+
+# 가공 능력
+machining:
+  max_swing_mm: 550              # Ø550 mm (베드 위)
+  max_turning_diameter_mm: 350   # Ø350 mm
+  max_turning_length_mm: 300     # 300 mm
+  bar_capacity_mm: 45            # 관통 Ø45 mm
+  x_axis_travel_mm: 210
+  z_axis_travel_mm: 330
+  x_rapid_m_per_min: 36
+  z_rapid_m_per_min: 36
+
+# 주축 사양
+spindle:
+  max_speed_rpm: 6000
+  power_kw: 15                   # 정격 15 kW (연속 11 kW)
+  torque_nm: 0                   # ⚠️ 미확인 — 카탈로그 확인 필요
+  nose_type: "A2-5"
+  bore_diameter_mm: 65
+
+# 척 사양
+chuck:
+  type: "hydraulic"
+  size_inch: 6                   # 6인치
+  size_mm: 152                   # 약 152 mm
+  jaw_count: 3
+  clamping_force_kn: 0           # ⚠️ 미확인 — 사용자 입력 필요
+  open_close_time_s: 0           # ⚠️ 미확인 — 사용자 입력 필요
+
+# 터렛
+turret:
+  stations: 12
+  tool_size_mm: "20x20"          # A2-5 기준 추정
+  boring_bar_diameter_mm: 32     # A2-5 기준 추정
+  indexing_time_s: 0.12          # next-station
+
+# 제어기
+controller:
+  type: "FANUC 0i-TF+"
+
+# 로봇 접근 좌표 (로봇 base_link 기준, 단위: m)
+# ⚠️ 실제 레이아웃 측정 후 입력 필요
+access_points:
+  load_position:    { x: 0, y: 0, z: 0, rx: 0, ry: 0, rz: 0 }
+  unload_position:  { x: 0, y: 0, z: 0, rx: 0, ry: 0, rz: 0 }
+  standby_position: { x: 0, y: 0, z: 0, rx: 0, ry: 0, rz: 0 }
+
+# 통신 (시뮬레이션에서는 ROS2 토픽/서비스로 대체)
+# ⚠️ 실제 연동 방식 확인 후 입력 필요
+communication:
+  protocol: ""                   # Modbus TCP / EtherNet/IP / I/O
+  signals:
+    door_open_cmd: ""
+    door_close_cmd: ""
+    door_status: ""
+    cycle_start: ""
+    cycle_complete: ""
+    chuck_open_cmd: ""
+    chuck_close_cmd: ""
+
+# 가공 사이클
+cycle:
+  typical_time_s: 0              # ⚠️ 공작물/공정에 따라 다름
+  door_open_time_s: 0            # ⚠️ 미확인
+  door_close_time_s: 0           # ⚠️ 미확인

@@ -1,0 +1,120 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <world name="m1013_moveit">
+    <physics name="1ms" type="ignored">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+    </physics>
+
+    <plugin filename="ignition-gazebo-physics-system" name="gz::sim::systems::Physics"/>
+    <plugin filename="ignition-gazebo-user-commands-system" name="gz::sim::systems::UserCommands"/>
+    <plugin filename="ignition-gazebo-scene-broadcaster-system" name="gz::sim::systems::SceneBroadcaster"/>
+    <plugin filename="ignition-gazebo-contact-system" name="gz::sim::systems::Contact"/>
+
+
+    <!-- 조명 -->
+    <light type="directional" name="sun">
+      <cast_shadows>true</cast_shadows>
+      <pose>0 0 10 0 0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <direction>-0.5 0.1 -0.9</direction>
+    </light>
+
+    <!-- 바닥 -->
+    <model name="ground_plane">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <plane><normal>0 0 1</normal><size>100 100</size></plane>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <plane><normal>0 0 1</normal><size>100 100</size></plane>
+          </geometry>
+          <material>
+            <ambient>0.8 0.8 0.8 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+            <specular>0.8 0.8 0.8 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- XYZ 좌표축 (원점) -->
+    <!-- X축 (빨강) -->
+    <model name="axis_x">
+      <static>true</static>
+      <link name="link">
+        <visual name="shaft">
+          <pose>0.25 0 0 0 1.5708 0</pose>
+          <geometry><cylinder><radius>0.005</radius><length>0.5</length></cylinder></geometry>
+          <material><ambient>1 0 0 1</ambient><diffuse>1 0 0 1</diffuse></material>
+        </visual>
+        <visual name="head">
+          <pose>0.5 0 0 0 1.5708 0</pose>
+          <geometry><cone><radius>0.015</radius><length>0.04</length></cone></geometry>
+          <material><ambient>1 0 0 1</ambient><diffuse>1 0 0 1</diffuse></material>
+        </visual>
+        <visual name="label">
+          <pose>0.56 0 0 0 0 0</pose>
+          <geometry><sphere><radius>0.015</radius></sphere></geometry>
+          <material><ambient>1 0 0 1</ambient><diffuse>1 0 0 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Y축 (초록) -->
+    <model name="axis_y">
+      <static>true</static>
+      <link name="link">
+        <visual name="shaft">
+          <pose>0 0.25 0 -1.5708 0 0</pose>
+          <geometry><cylinder><radius>0.005</radius><length>0.5</length></cylinder></geometry>
+          <material><ambient>0 1 0 1</ambient><diffuse>0 1 0 1</diffuse></material>
+        </visual>
+        <visual name="head">
+          <pose>0 0.5 0 -1.5708 0 0</pose>
+          <geometry><cone><radius>0.015</radius><length>0.04</length></cone></geometry>
+          <material><ambient>0 1 0 1</ambient><diffuse>0 1 0 1</diffuse></material>
+        </visual>
+        <visual name="label">
+          <pose>0 0.56 0 0 0 0</pose>
+          <geometry><sphere><radius>0.015</radius></sphere></geometry>
+          <material><ambient>0 1 0 1</ambient><diffuse>0 1 0 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Z축 (파랑) -->
+    <model name="axis_z">
+      <static>true</static>
+      <link name="link">
+        <visual name="shaft">
+          <pose>0 0 0.25 0 0 0</pose>
+          <geometry><cylinder><radius>0.005</radius><length>0.5</length></cylinder></geometry>
+          <material><ambient>0 0 1 1</ambient><diffuse>0 0 1 1</diffuse></material>
+        </visual>
+        <visual name="head">
+          <pose>0 0 0.5 0 0 0</pose>
+          <geometry><cone><radius>0.015</radius><length>0.04</length></cone></geometry>
+          <material><ambient>0 0 1 1</ambient><diffuse>0 0 1 1</diffuse></material>
+        </visual>
+        <visual name="label">
+          <pose>0 0 0.56 0 0 0</pose>
+          <geometry><sphere><radius>0.015</radius></sphere></geometry>
+          <material><ambient>0 0 1 1</ambient><diffuse>0 0 1 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+  </world>
+</sdf>
