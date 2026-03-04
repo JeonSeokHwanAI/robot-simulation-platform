@@ -1,0 +1,44 @@
+# 공작물: S45C 원형봉 Ø30×50
+# 출처: JIS G4051 S45C 물성, 웹 검색
+# 등록일: 2026-03-04
+
+equipment_type: workpiece
+name: "S45C 원형봉 Ø30×50"
+material: "S45C"                  # JIS G4051, ≈ AISI 1045
+
+# 소재 특성
+material_properties:
+  standard: "JIS G4051"
+  equivalent: "AISI 1045 / C45 / SM45C"
+  carbon_content_percent: 0.45
+  density_kg_m3: 7700
+  tensile_strength_mpa: 650      # 정규화 상태
+  hardness_hb: "167~229"         # 정규화 상태
+
+# 가공 전 치수 (단위: mm)
+raw_dimensions:
+  shape: "cylindrical"
+  diameter_mm: 30
+  length_mm: 50
+  width_mm: 0                    # 원통형이므로 해당 없음
+  height_mm: 0                   # 원통형이므로 해당 없음
+
+# 물리 특성 (Gazebo 물리 시뮬레이션용)
+# 체적: π × 15² × 50 = 35,343 mm³ ≈ 35.3 cm³
+# 질량: 7,700 kg/m³ × 35,343 mm³ = 0.272 kg
+physics:
+  mass_kg: 0.272
+  friction_coefficient: 0.57     # S45C 강재 마찰계수
+  restitution: 0.05              # 강재 반발계수 (낮음)
+
+# 파지 정보
+grasping:
+  grip_diameter_mm: 30           # 그리퍼가 잡을 직경 = 소재 직경
+  grip_force_min_n: 8            # 최소 필요 파지력 (0.272kg × 9.81 × 안전계수3)
+  approach_direction: "side"     # 원통형 → 측면 파지
+
+# 가공 후 치수 (선택 — 가공 시뮬레이션 시 사용)
+# finished_dimensions:
+#   shape: "cylindrical"
+#   diameter_mm: 28
+#   length_mm: 48

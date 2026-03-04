@@ -1,0 +1,27 @@
+# 공작물 프로필
+# 사용법: 이 템플릿을 복사하여 실제 장비 사양으로 채운다
+# 참조: skills/07-equipment-registry/SKILL.md
+
+equipment_type: workpiece
+name: ""                         # 예: "알루미늄 원형봉 Ø30×100"
+material: ""                     # aluminum / steel / plastic 등
+
+# 가공 전 치수 (단위: mm)
+raw_dimensions:
+  shape: ""                      # cylindrical / prismatic / custom
+  diameter_mm: 0                 # 원통형인 경우
+  length_mm: 0
+  width_mm: 0                    # 직육면체인 경우
+  height_mm: 0
+
+# 물리 특성 (Gazebo 물리 시뮬레이션용)
+physics:
+  mass_kg: 0
+  friction_coefficient: 0.5
+  restitution: 0.1               # 반발계수
+
+# 파지 정보
+grasping:
+  grip_diameter_mm: 0            # 그리퍼가 잡을 직경
+  grip_force_min_n: 0            # 최소 필요 파지력
+  approach_direction: "top"      # top / side / custom

@@ -1,0 +1,80 @@
+# CNC 선반: 두산 LYNX 2100LB
+# 출처: Ellison Technologies, Metal Techniks 제품 사양
+# 등록일: 2026-03-04
+
+equipment_type: cnc-lathe
+name: "Doosan LYNX 2100LB"
+manufacturer: "Doosan Machine Tools"
+model: "LYNX 2100LB"
+
+# 물리 치수 (Gazebo 월드 배치용, 단위: m)
+dimensions:
+  width: 1.595                   # 1595 mm
+  depth: 2.570                   # 2570 mm (길이)
+  height: 1.693                  # 1693 mm
+  weight_kg: 3400
+  door_opening_width: 0          # ⚠️ 미확인 — 사용자 입력 필요
+  door_opening_height: 0         # ⚠️ 미확인 — 사용자 입력 필요
+
+# 가공 능력
+machining:
+  max_turning_diameter_mm: 350   # Ø350 mm
+  max_turning_length_mm: 550     # 550 mm
+  recommended_turning_diameter_mm: 210
+  bar_capacity_mm: 66            # 관통 Ø66 mm
+  x_axis_travel_mm: 205
+  z_axis_travel_mm: 560
+  x_rapid_m_per_min: 30
+  z_rapid_m_per_min: 36
+  repeatability_x_mm: 0.002
+  repeatability_z_mm: 0.003
+
+# 주축 사양
+spindle:
+  max_speed_rpm: 4500
+  power_kw: 15                   # 정격 15 kW (20 HP)
+  torque_nm: 169
+  nose_type: "A2-6"
+  bore_diameter_mm: 76
+
+# 척 사양
+chuck:
+  type: "hydraulic"
+  size_mm: 210                   # 8인치 (210 mm)
+  jaw_count: 3
+  clamping_force_kn: 0           # ⚠️ 미확인 — 사용자 입력 필요
+  open_close_time_s: 0           # ⚠️ 미확인 — 사용자 입력 필요
+
+# 터렛
+turret:
+  stations: 12
+  tool_size_mm: "25x25"
+  boring_bar_diameter_mm: 40
+  indexing_time_s: 0.11          # next-station
+  shank_type: "BMT-KEY"
+
+# 로봇 접근 좌표 (로봇 base_link 기준, 단위: m)
+# ⚠️ 실제 레이아웃 측정 후 입력 필요
+access_points:
+  load_position:    { x: 0, y: 0, z: 0, rx: 0, ry: 0, rz: 0 }
+  unload_position:  { x: 0, y: 0, z: 0, rx: 0, ry: 0, rz: 0 }
+  standby_position: { x: 0, y: 0, z: 0, rx: 0, ry: 0, rz: 0 }
+
+# 통신 (시뮬레이션에서는 ROS2 토픽/서비스로 대체)
+# ⚠️ 실제 연동 방식 확인 후 입력 필요
+communication:
+  protocol: ""                   # Modbus TCP / EtherNet/IP / I/O
+  signals:
+    door_open_cmd: ""
+    door_close_cmd: ""
+    door_status: ""
+    cycle_start: ""
+    cycle_complete: ""
+    chuck_open_cmd: ""
+    chuck_close_cmd: ""
+
+# 가공 사이클
+cycle:
+  typical_time_s: 0              # ⚠️ 공작물/공정에 따라 다름
+  door_open_time_s: 0            # ⚠️ 미확인
+  door_close_time_s: 0           # ⚠️ 미확인

@@ -1,0 +1,35 @@
+# 평행 그리퍼 프로필
+# 사용법: 이 템플릿을 복사하여 실제 장비 사양으로 채운다
+# 참조: skills/07-equipment-registry/SKILL.md
+
+equipment_type: parallel-gripper
+name: ""                         # 예: "Robotiq 2F-140"
+manufacturer: ""
+model: ""
+
+# 그리퍼 사양
+gripper:
+  type: parallel                 # parallel / angular / vacuum
+  stroke_mm: 0                   # 최대 개폐 거리
+  grip_force_n: 0                # 파지력
+  finger_count: 2
+  open_close_time_s: 0
+  weight_kg: 0
+
+# 로봇 장착 정보
+mounting:
+  flange_type: ""                # ISO 9409-1-50-4-M6 등
+  tcp_offset:                    # 플랜지→TCP 오프셋 (단위: m)
+    x: 0
+    y: 0
+    z: 0
+
+# 통신
+communication:
+  protocol: ""                   # Modbus RTU / I/O / ROS2 Action
+  ros2_action: ""                # 예: /gripper_controller/gripper_cmd
+
+# 시뮬레이션 모델
+simulation:
+  urdf_path: ""                  # 그리퍼 URDF 경로
+  mesh_path: ""                  # 메쉬 파일 경로

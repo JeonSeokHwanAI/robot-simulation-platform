@@ -1,0 +1,44 @@
+[
+  {
+    "id": "eval-00",
+    "skill": "00-robot-onboarding",
+    "scenario": "CGXI R12 온보딩 절차 안내",
+    "input": "CGXI R12 로봇을 시뮬레이션에 추가하고 싶습니다. 어떻게 시작하나요?",
+    "expected": "robots/cgxi-r12/ 프로필 확인 → 벤더 데이터 수집 → 3D 메쉬 변환 → URDF 작성 순서 안내"
+  },
+  {
+    "id": "eval-01",
+    "skill": "01-environment-setup",
+    "scenario": "WSL2 + ROS2 환경 구축",
+    "input": "시뮬레이션 환경을 처음부터 구축하고 싶습니다.",
+    "expected": "WSL2 → ROS2 Humble → Gazebo Fortress → MoveIt2 → Docker(DRCF) 순서 안내"
+  },
+  {
+    "id": "eval-02",
+    "skill": "02-simulation-builder",
+    "scenario": "Machine Tending 월드 구성",
+    "input": "Doosan M1013으로 CNC 머신텐딩 시뮬레이션 월드를 만들어주세요.",
+    "expected": "Gazebo 월드 파일 생성 (로봇 + CNC + 소재 트레이 배치)"
+  },
+  {
+    "id": "eval-03",
+    "skill": "03-task-skill-library",
+    "scenario": "Pick & Place 작업 프로그래밍",
+    "input": "M1013으로 간단한 Pick & Place 프로그램을 작성해주세요.",
+    "expected": "MoveIt2 기반 Pick & Place ROS2 노드 코드 생성"
+  },
+  {
+    "id": "eval-04",
+    "skill": "04-result-analyzer",
+    "scenario": "시뮬레이션 결과 분석",
+    "input": "방금 실행한 시뮬레이션 결과를 분석해주세요.",
+    "expected": "사이클 타임, 성공률, 조인트 사용률 등 분석 보고서 생성"
+  },
+  {
+    "id": "eval-05",
+    "skill": "05-optimizer",
+    "scenario": "사이클 타임 최적화",
+    "input": "사이클 타임이 15초인데 10초 이하로 줄이고 싶습니다.",
+    "expected": "병목 구간 식별 → 경로/속도 최적화 → 수정 코드 생성"
+  }
+]

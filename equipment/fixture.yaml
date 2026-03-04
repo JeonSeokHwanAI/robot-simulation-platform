@@ -1,0 +1,26 @@
+# 고정구(지그) 프로필
+# 사용법: 이 템플릿을 복사하여 실제 장비 사양으로 채운다
+# 참조: skills/07-equipment-registry/SKILL.md
+
+equipment_type: fixture
+name: ""
+manufacturer: ""
+model: ""
+
+# 물리 치수 (단위: m)
+dimensions:
+  width: 0
+  depth: 0
+  height: 0
+
+# 고정 사양
+clamping:
+  type: ""                       # manual / pneumatic / hydraulic
+  workpiece_shape: ""            # cylindrical / prismatic / custom
+  max_workpiece_diameter_mm: 0
+  max_workpiece_height_mm: 0
+
+# 배치 좌표 (월드 기준, 단위: m)
+placement:
+  position: { x: 0, y: 0, z: 0 }
+  orientation: { roll: 0, pitch: 0, yaw: 0 }

@@ -1,0 +1,48 @@
+# CNC 선반 장비 프로필
+# 사용법: 이 템플릿을 복사하여 실제 장비 사양으로 채운다
+# 참조: skills/07-equipment-registry/SKILL.md
+
+equipment_type: cnc-lathe
+name: ""                         # 예: "FANUC α-D14LiB5"
+manufacturer: ""
+model: ""
+
+# 물리 치수 (Gazebo 월드 배치용, 단위: m)
+dimensions:
+  width: 0
+  depth: 0
+  height: 0
+  door_opening_width: 0          # 도어 열림 폭
+  door_opening_height: 0
+
+# 척 사양
+chuck:
+  type: ""                       # hydraulic / pneumatic / manual
+  size_mm: 0                     # 척 직경
+  jaw_count: 3
+  clamping_force_kn: 0
+  open_close_time_s: 0
+
+# 로봇 접근 좌표 (로봇 base_link 기준, 단위: m)
+access_points:
+  load_position:    { x: 0, y: 0, z: 0, rx: 0, ry: 0, rz: 0 }
+  unload_position:  { x: 0, y: 0, z: 0, rx: 0, ry: 0, rz: 0 }
+  standby_position: { x: 0, y: 0, z: 0, rx: 0, ry: 0, rz: 0 }
+
+# 통신 (시뮬레이션에서는 ROS2 토픽/서비스로 대체)
+communication:
+  protocol: ""                   # Modbus TCP / EtherNet/IP / I/O
+  signals:
+    door_open_cmd: ""
+    door_close_cmd: ""
+    door_status: ""
+    cycle_start: ""
+    cycle_complete: ""
+    chuck_open_cmd: ""
+    chuck_close_cmd: ""
+
+# 가공 사이클
+cycle:
+  typical_time_s: 0              # 일반적인 가공 시간
+  door_open_time_s: 0
+  door_close_time_s: 0

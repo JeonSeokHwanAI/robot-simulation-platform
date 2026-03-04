@@ -1,0 +1,82 @@
+# Machine Tending 프로젝트 정의서 템플릿
+# 사용법: 이 파일을 workspace/projects/{robot}_{date}_{task}/ 에 복사하여 채운다
+# 참조: skills/03-task-skill-library/SKILL.md
+
+project:
+  name: ""                         # 예: "M1013_CNC_MachTending_v1"
+  robot: ""                        # doosan-m1013 / cgxi-r12
+  task_type: machine-tending
+  created_date: "YYYY-MM-DD"
+  description: ""                  # 프로젝트 간단 설명
+
+# 사용 장비 (equipment/ 디렉토리의 파일명 참조)
+equipment:
+  robot_gripper: ""                # 예: parallel-gripper_2f140.yaml
+  cnc_machine: ""                  # 예: cnc-lathe_fanuc-alpha.yaml
+  input_fixture: ""                # 소재 트레이/피더
+  output_fixture: ""               # 완성품 트레이
+  workpiece: ""                    # 예: workpiece_alu-rod-30x100.yaml
+
+# 레이아웃 (월드 좌표계 기준, 단위: m)
+layout:
+  robot_position:    { x: 0, y: 0, z: 0, yaw: 0 }
+  cnc_position:      { x: 0, y: 0, z: 0, yaw: 0 }
+  input_position:    { x: 0, y: 0, z: 0, yaw: 0 }
+  output_position:   { x: 0, y: 0, z: 0, yaw: 0 }
+
+# 작업 흐름 정의
+workflow:
+  steps:
+    - name: "Home → 소재 트레이 이동"
+      type: move
+      from: home
+      to: input_fixture
+    - name: "소재 피킹"
+      type: grip
+      target: workpiece_raw
+    - name: "CNC 도어 열림 대기"
+      type: wait
+      condition: cnc_machine.door_open
+    - name: "CNC 로딩"
+      type: move_and_place
+      to: cnc_machine.load_position
+    - name: "CNC 도어 닫힘 + 가공 시작"
+      type: signal
+      action: cnc_machine.cycle_start
+    - name: "가공 완료 대기"
+      type: wait
+      condition: cnc_machine.cycle_complete
+    - name: "CNC 도어 열림 대기"
+      type: wait
+      condition: cnc_machine.door_open
+    - name: "완성품 언로딩"
+      type: pick
+      from: cnc_machine.unload_position
+    - name: "완성품 배치"
+      type: move_and_place
+      to: output_fixture
+    - name: "Home 복귀"
+      type: move
+      to: home
+
+# 성능 목표
+targets:
+  cycle_time_s: 0                  # 목표 사이클 타임 (로봇 동작 + 가공 시간)
+  robot_motion_time_s: 0           # 로봇 동작만의 목표 시간
+  success_rate_percent: 99.0
+  daily_production_count: 0
+
+# 안전 요구사항
+safety:
+  max_tcp_speed_m_s: 0.25          # 협동로봇 안전 속도 (ISO/TS 15066)
+  collision_check: true
+  singularity_check: true
+  joint_limit_margin_deg: 5        # 조인트 제한 마진
+
+# 시뮬레이션 설정
+simulation:
+  planner: "ompl"                  # ompl / chomp / pilz
+  planning_time_s: 5.0
+  num_planning_attempts: 10
+  velocity_scaling: 0.5            # 0.0~1.0
+  acceleration_scaling: 0.5        # 0.0~1.0
